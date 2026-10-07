@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A step-by-step introduction to creating a static Digital Humanities website with HTML and CSS and publishing it with GitHub Pages.">
+  <title>Digital Humanities | HTML & CSS Tutorial</title>
+
+  <style>
+    /* =========================================================
+       STEP 2: BASIC CSS
+       CSS controls presentation: colour, spacing, typography,
+       layout, borders, and responsive behaviour.
+       ========================================================= */
+
+    :root {
+      --ink: #182230;
+      --muted: #5e6878;
+      --paper: #ffffff;
+      --page: #f4f6f8;
+      --line: #dfe3e8;
+      --accent: #8a3ffc;
+      --accent-soft: #f0e8ff;
+      --code: #171a21;
+      --code-text: #e9edf2;
+      --success: #176b4d;
+      --max: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin-inline: auto;
+    }
+
+    /* STEP 3: HEADER AND NAVIGATION */
+
+    header {
+      background: #15191f;
+      color: white;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    .brand span {
+      color: #c9a8ff;
+    }
+
+    nav a {
+      color: #e8ebef;
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: .92rem;
+    }
+
+    nav a:hover {
+      color: #c9a8ff;
+    }
+
+    /* STEP 4: HERO */
+
+    .hero {
+      padding: 80px 0 64px;
+      background:
+        radial-gradient(circle at 85% 20%, #eadcff 0, transparent 30%),
+        var(--paper);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #5b24a8;
+      font-size: .78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin: 18px 0 16px;
+      font-size: clamp(2.4rem, 6vw, 4.7rem);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .learning-box {
+      margin-top: 28px;
+      max-width: 800px;
+      padding: 18px 20px;
+      border-left: 5px solid var(--accent);
+      background: var(--accent-soft);
+      border-radius: 8px;
+    }
+
+    /* STEP 5: TUTORIAL SECTIONS */
+
+    main section {
+      padding: 64px 0;
+    }
+
+    .section-title {
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -.04em;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .step {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 22px;
+    }
+
+    .step-number {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .step h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .step p {
+      margin: 8px 0;
+    }
+
+    .concept {
+      margin: 18px 0;
+      padding: 15px 18px;
+      border: 1px solid var(--line);
+      background: #fafbfc;
+      border-radius: 10px;
+    }
+
+    .concept strong {
+      color: #4f1f91;
+    }
+
+    /* STEP 6: CODE BLOCKS */
+
+    pre {
+      overflow-x: auto;
+      margin: 18px 0;
+      padding: 20px;
+      border-radius: 10px;
+      background: var(--code);
+      color: var(--code-text);
+      font: .88rem/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    p code,
+    li code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eceef2;
+      color: #4f1f91;
+    }
+
+    /* STEP 7: EXERCISES */
+
+    .exercise {
+      border-left: 5px solid var(--success);
+      background: #eef8f4;
+      padding: 18px 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .exercise strong {
+      color: var(--success);
+    }
+
+    .checklist {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .checklist p {
+      margin: 9px 0;
+    }
+
+    /* STEP 8: FOOTER */
+
+    footer {
+      padding: 34px 0;
+      background: #15191f;
+      color: #b8c0ca;
+      font-size: .9rem;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 18px 0;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 14px;
+      }
+
+      .hero {
+        padding: 58px 0 48px;
+      }
+
+      .step {
+        padding: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       STEP 1: HTML DOCUMENT STRUCTURE
+
+       Every HTML page normally begins with:
+       <!doctype html>
+       <html>
+       <head>
+       <body>
+
+       The browser reads this structure and renders the page.
+       ========================================================= -->
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">DH <span>Web Tutorial</span></a>
+
+      <!-- Navigation uses anchor links.
+           href="#html" points to id="html" later in the page. -->
+      <nav aria-label="Tutorial navigation">
+        <a href="#learn">Learn</a>
+        <a href="#html">HTML</a>
+        <a href="#css">CSS</a>
+        <a href="#github">GitHub</a>
+        <a href="#exercise">Exercise</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- =======================================================
+         INTRODUCTION
+         ======================================================= -->
+
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow">Digital Humanities · Beginner Tutorial</span>
+
+        <h1>Build and publish your first static website.</h1>
+
+        <p>
+          This tutorial teaches students how to create a simple website with
+          <strong>HTML</strong> and <strong>CSS</strong>, understand the
+          structure of a web document, and publish the finished page through
+          <strong>GitHub Pages</strong>.
+        </p>
+
+        <div class="learning-box">
+          <strong>Learning objective:</strong>
+          By the end of this tutorial, you should be able to create an
+          <code>index.html</code> file, add semantic HTML, style it with CSS,
+          save it in a GitHub repository, and publish it as a public webpage.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         WHAT YOU WILL LEARN
+         ======================================================= -->
+
+    <section id="learn">
+      <div class="container">
+        <div class="section-title">
+          <h2>What You Will Learn</h2>
+          <p>The tutorial moves from webpage structure to publication.</p>
+        </div>
+
+        <article class="step">
+          <span class="step-number">A</span>
+          <h3>Four stages of the tutorial</h3>
+
+          <div class="concept">
+            <strong>HTML:</strong> Learn how to structure and semantically
+            describe a webpage.
+          </div>
+
+          <div class="concept">
+            <strong>CSS:</strong> Learn how to control typography, colour,
+            spacing, layout, and responsive behaviour.
+          </div>
+
+          <div class="concept">
+            <strong>GitHub:</strong> Learn how to store and manage your
+            webpage in a repository.
+          </div>
+
+          <div class="concept">
+            <strong>GitHub Pages:</strong> Learn how to publish the webpage
+            as a public website.
+          </div>
+
+          <div class="exercise">
+            <strong>REFLECT:</strong>
+            In Digital Humanities, these technical stages are connected to
+            questions of representation, access, metadata, interpretation,
+            and scholarly communication.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         BEFORE YOU BEGIN
+         ======================================================= -->
+
+    <section id="before" style="background:#fff;">
+      <div class="container">
+        <div class="section-title">
+          <h2>Before You Begin</h2>
+          <p>Prepare the small set of tools required for this tutorial.</p>
+        </div>
+
+        <article class="step">
+          <span class="step-number">B</span>
+          <h3>What you need</h3>
+
+          <p><strong>READ:</strong> You do not need advanced programming knowledge.</p>
+
+          <div class="checklist">
+            <p><strong>☐ Web browser:</strong> Chrome, Firefox, Edge, Safari, or another modern browser.</p>
+            <p><strong>☐ Text editor:</strong> VS Code, Notepad++, Sublime Text, or another plain-text editor.</p>
+            <p><strong>☐ GitHub account:</strong> Required for creating the online repository.</p>
+            <p><strong>☐ File-management skills:</strong> You should know how to create a folder, save a file, rename a file, and upload a file.</p>
+          </div>
+
+          <div class="exercise">
+            <strong>DO:</strong>
+            Create a folder called <code>digital-humanities-website</code>
+            on your computer. This will be your working directory.
+          </div>
+
+          <div class="exercise">
+            <strong>CHECK:</strong>
+            Make sure you can locate the folder and open your text editor
+            before continuing.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         PART I: HTML
+         ======================================================= -->
+
+    <section id="html">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Part I: HTML</h2>
+          <p>HTML provides the structure and semantic meaning of a webpage.</p>
+        </div>
+
+        <article class="step">
+          <span class="step-number">1</span>
+          <h3>Create a file called <code>index.html</code></h3>
+
+          <p><strong>READ:</strong> Create a new folder on your computer. Inside that folder, create
+            a file named <code>index.html</code>.</p>
+
+          <p>
+            The filename matters because <code>index.html</code> is commonly
+            used as the default entry page by web servers and GitHub Pages.
+          </p>
+
+          <div class="concept">
+            <strong>Digital Humanities connection:</strong>
+            A static webpage can function as a small scholarly interface.
+            For example, you might use it to present a digital archive,
+            research project, textual corpus, exhibition, map project, or
+            bibliographic resource.
+          </div>
+        </article>
+
+        <article class="step">
+          <span class="step-number">2</span>
+          <h3>Write the basic HTML skeleton</h3>
+
+          <p>Start with this structure:</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="en-GB"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;My Digital Humanities Project&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;My Digital Humanities Project&lt;/h1&gt;
+  &lt;p&gt;This is my first webpage.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+          <div class="concept">
+            <strong>Key concept: element.</strong>
+            An HTML element is a structural unit such as
+            <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, or
+            <code>&lt;section&gt;</code>. Elements tell the browser what
+            different pieces of content mean.
+          </div>
+
+          <div class="exercise">
+            <strong>DO:</strong>
+            Change the text inside <code>&lt;h1&gt;</code> to the title of your
+            own research project. Open the file in a browser.
+          </div>
+          <div class="exercise">
+            <strong>CHECK:</strong>
+            Confirm that the browser displays your new title.
+          </div>
+        </article>
+
+        <article class="step">
+          <span class="step-number">3</span>
+          <h3>Add semantic HTML</h3>
+
+          <p>
+            <strong>READ:</strong> Do not treat HTML as merely a way to make
+            text appear on a screen. <strong>Semantic HTML</strong> gives
+            content a meaningful structural role.
+          </p>
+
+<pre><code>&lt;header&gt;
+  &lt;h1&gt;Digital Archive of Modernist Poetry&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;h2&gt;About the Archive&lt;/h2&gt;
+    &lt;p&gt;This project documents...&lt;/p&gt;
+  &lt;/section&gt;
+
+  &lt;section&gt;
+    &lt;h2&gt;Primary Sources&lt;/h2&gt;
+    &lt;p&gt;The collection contains...&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;Digital Humanities Project, 2026&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+
+          <div class="concept">
+            <strong>Key concept: semantic markup.</strong>
+            Semantic markup distinguishes content by function. For example,
+            <code>&lt;nav&gt;</code> identifies navigation, while
+            <code>&lt;article&gt;</code> identifies a self-contained piece of
+            content. This improves accessibility and machine readability.
+          </div>
+        </article>
+
+        <article class="step">
+          <span class="step-number">4</span>
+          <h3>Add links</h3>
+
+          <p>
+            Hypertext is central to both the web and many Digital Humanities
+            projects. An anchor element creates a link.
+          </p>
+
+<pre><code>&lt;a href="https://github.com/"&gt;
+  Visit GitHub
+&lt;/a&gt;</code></pre>
+
+          <p>
+            You can also link to another section of the same page:
+          </p>
+
+<pre><code>&lt;a href="#sources"&gt;Go to Sources&lt;/a&gt;
+
+&lt;section id="sources"&gt;
+  &lt;h2&gt;Sources&lt;/h2&gt;
+&lt;/section&gt;</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         PART II: CSS
+         ======================================================= -->
+
+    <section id="css" style="background:#fff;">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Part II: CSS</h2>
+          <p>CSS controls the visual presentation of HTML.</p>
+        </div>
+
+        <article class="step">
+          <span class="step-number">5</span>
+          <h3>Add CSS inside the HTML file</h3>
+
+          <p>
+            <strong>READ:</strong> For this tutorial we use an internal
+            stylesheet. Put your CSS between <code>&lt;style&gt;</code> and
+            <code>&lt;/style&gt;</code> inside the <code>&lt;head&gt;</code>.
+          </p>
+
+<pre><code>&lt;head&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      color: #182230;
+      background: #f4f6f8;
+    }
+
+    h1 {
+      color: #8a3ffc;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+
+          <div class="concept">
+            <strong>Key concept: selector.</strong>
+            A CSS selector identifies the HTML element that should receive a
+            style. In <code>h1 { color: purple; }</code>, the selector is
+            <code>h1</code>.
+          </div>
+        </article>
+
+        <article class="step">
+          <span class="step-number">6</span>
+          <h3>Understand the CSS box model</h3>
+
+          <p>
+            Every visible HTML element can be understood through the
+            <strong>box model</strong>: content, padding, border, and margin.
+          </p>
+
+<pre><code>.card {
+  padding: 24px;
+  border: 1px solid #ddd;
+  margin: 20px 0;
+}</code></pre>
+
+          <p>
+            Here, <code>padding</code> creates space inside the element,
+            <code>border</code> creates its visible boundary, and
+            <code>margin</code> creates space outside the element.
+          </p>
+        </article>
+
+        <article class="step">
+          <span class="step-number">7</span>
+          <h3>Create a simple responsive layout</h3>
+
+          <p>
+            Responsive design allows the same webpage to adapt to different
+            screen sizes.
+          </p>
+
+<pre><code>.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 700px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+
+          <div class="concept">
+            <strong>Key concept: media query.</strong>
+            A media query applies CSS conditionally. Here, three columns
+            become one column when the viewport is narrower than 700 pixels.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         PART III: GITHUB
+         ======================================================= -->
+
+    <section id="github">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Part III: Publish with GitHub Pages</h2>
+          <p>
+            GitHub can host a static HTML/CSS website without a traditional
+            web server.
+          </p>
+        </div>
+
+        <article class="step">
+          <span class="step-number">8</span>
+          <h3>Create a GitHub repository</h3>
+
+          <p>
+            <strong>DO:</strong> Sign in to GitHub and create a new repository.
+            Give it a clear name, such as
+            <code>digital-humanities-website</code>.
+          </p>
+
+          <p>
+            For a classroom exercise, a public repository is usually the
+            simplest option if the project contains no restricted material.
+          </p>
+
+          <div class="concept">
+            <strong>Key concept: repository.</strong>
+            A repository is a project space that stores files and their
+            version history. Git is the version-control system commonly used
+            to track those changes.
+          </div>
+        </article>
+
+        <article class="step">
+          <span class="step-number">9</span>
+          <h3>Upload <code>index.html</code></h3>
+
+          <p>
+            <strong>DO:</strong> Upload your <code>index.html</code> file to
+            the root of the repository. The structure should look approximately
+            like this:
+          </p>
+
+<pre><code>digital-humanities-website/
+└── index.html</code></pre>
+
+          <p>
+            For the first exercise, keep the project deliberately simple.
+            Students can add images, CSS files, JavaScript, data files, and
+            other resources later.
+          </p>
+        </article>
+
+        <article class="step">
+          <span class="step-number">10</span>
+          <h3>Enable GitHub Pages</h3>
+
+          <p>
+            <strong>DO:</strong> In the repository, open
+            <strong>Settings</strong>, find <strong>Pages</strong>, and
+            configure the site to deploy from the repository's main branch.
+          </p>
+
+          <p>
+            GitHub will generate a public URL for the site. The exact interface
+            can change, because software companies enjoy moving buttons when
+            nobody is looking, but the conceptual workflow remains:
+          </p>
+
+<pre><code>Local HTML file
+      ↓
+GitHub repository
+      ↓
+GitHub Pages
+      ↓
+Public webpage</code></pre>
+        </article>
+
+        <article class="step">
+          <span class="step-number">11</span>
+          <h3>Understand the Digital Humanities workflow</h3>
+
+          <p>
+            The important lesson is not merely how to publish a webpage. The
+            workflow introduces a basic model of digital scholarship:
+          </p>
+
+<pre><code>Research question
+      ↓
+Digital materials
+      ↓
+Data / texts / images
+      ↓
+Encoding and metadata
+      ↓
+Interface
+      ↓
+Public interpretation</code></pre>
+
+          <p>
+            HTML is therefore not only a technical tool. It can become an
+            <strong>interpretive interface</strong>: a structured environment
+            through which readers encounter an archive, corpus, edition,
+            exhibition, or argument.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         PART IV: STUDENT EXERCISE
+         ======================================================= -->
+
+    <section id="exercise" style="background:#fff;">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Part IV: Student Exercise</h2>
+          <p>Build a small Digital Humanities project page.</p>
+        </div>
+
+        <article class="step">
+          <span class="step-number">12</span>
+          <h3>Build your own project page</h3>
+
+          <p>
+            Create an <code>index.html</code> page for a hypothetical or real
+            Digital Humanities project.
+          </p>
+
+          <div class="checklist">
+            <p><strong>Required:</strong> Give the page a meaningful title.</p>
+            <p><strong>Required:</strong> Add a short project description.</p>
+            <p><strong>Required:</strong> Use at least three semantic sections.</p>
+            <p><strong>Required:</strong> Add one external hyperlink.</p>
+            <p><strong>Required:</strong> Add one internal anchor link.</p>
+            <p><strong>Required:</strong> Use CSS for typography, colour, spacing, and layout.</p>
+            <p><strong>Required:</strong> Make the page readable on a mobile screen.</p>
+            <p><strong>Required:</strong> Upload the file to GitHub.</p>
+            <p><strong>Required:</strong> Publish it using GitHub Pages.</p>
+          </div>
+
+          <div class="exercise">
+            <strong>Extension task:</strong>
+            Add a section containing a small bibliography. Then experiment
+            with an HTML table for metadata such as author, date, genre,
+            location, or source.
+          </div>
+        </article>
+
+        <article class="step">
+          <span class="step-number">13</span>
+          <h3>Questions for critical reflection</h3>
+
+          <p>
+            After publishing the page, consider the following questions:
+          </p>
+
+          <p>
+            How does the structure of the webpage influence the reader's
+            interpretation of the research? What information becomes prominent
+            because of the visual hierarchy? Which materials are included or
+            excluded? How does metadata shape discoverability? How might the
+            interface itself function as an argument?
+          </p>
+
+          <div class="concept">
+            <strong>Digital Humanities principle:</strong>
+            A digital project is not simply a container for research. Its
+            interface, metadata, encoding, navigation, and technical
+            infrastructure can all participate in scholarly interpretation.
+          </div>
+        </article>
+
+        <article class="step">
+          <span class="step-number">14</span>
+          <h3>Final Reflection</h3>
+
+          <p>
+            <strong>REFLECT:</strong>
+            A successful webpage is not only technically functional. Ask how
+            its structure, metadata, visual hierarchy, navigation, and
+            accessibility shape the reader's encounter with your material.
+          </p>
+
+          <div class="exercise">
+            <strong>CHECK:</strong>
+            Before submission, explain in two or three sentences how one
+            design or structural decision in your webpage affects its
+            scholarly meaning.
+          </div>
+        </article>
+
+        <article class="step">
+          <span class="step-number">15</span>
+          <h3>Final checklist</h3>
+
+          <div class="checklist">
+            <p>☐ My file is named <code>index.html</code>.</p>
+            <p>☐ My HTML has a <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>.</p>
+            <p>☐ I use semantic HTML elements.</p>
+            <p>☐ My CSS is inside a <code>&lt;style&gt;</code> element.</p>
+            <p>☐ I tested the page in a browser.</p>
+            <p>☐ I uploaded the file to GitHub.</p>
+            <p>☐ I enabled GitHub Pages.</p>
+            <p>☐ I tested the published URL.</p>
+                    </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>Digital Humanities Web Tutorial</strong><br>
+      A beginner-friendly introduction to HTML, CSS, GitHub, and GitHub Pages.
+    </div>
+  </footer>
+
+</body>
+</html>
